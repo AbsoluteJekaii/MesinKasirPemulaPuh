@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Process Payment</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('kasir_dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('transaction_history') }}">View Transactions</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <form action="{{ url_for('payment') }}" method="POST">
+            <div class="textbox">
+                <select name="product_id" required>
+                    <option value="" disabled selected>Select Product</option>
+                    {% for product in products %}
+                    <option value="{{ product.id }}">{{ product.name }} - {{ product.price }} IDR</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="textbox">
+                <input type="number" name="quantity" placeholder="Quantity" required>
+            </div>
+            <button type="submit" name="add_to_cart" class="btn">Add to Cart</button>
+            <button type="submit" name="next" class="btn">Next</button>
+        </form>
+        {% if session.cart %}
+        <h2>Cart</h2>
+        <ul>
+            {% for item in session.cart %}
+            <li>{{ item.product_name }} ({{ item.quantity }}) - {{ item.total_price }} IDR</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

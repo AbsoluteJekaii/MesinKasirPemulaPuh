@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Total Payment</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('kasir_dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('transaction_history') }}">View Transactions</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <form action="{{ url_for('total_payment') }}" method="POST">
+            <h2>Cart</h2>
+            <ul>
+                {% for item in cart %}
+                <li>{{ item.product_name }} ({{ item.quantity }}) - {{ item.total_price }} IDR</li>
+                {% endfor %}
+            </ul>
+            <h3>Grand Total: {{ grand_total }} IDR</h3>
+            <button type="submit" class="btn">Complete Transaction</button>
+        </form>
+    </div>
+</body>
+</html>
