@@ -1,4 +1,4 @@
-# Mesin-Kasir-Pemula
+# MesinKasirPemulaPuh
 
 Proyek ini adalah aplikasi **Mesin Kasir Sederhana** berbasis web yang dibangun menggunakan Flask. Aplikasi ini dirancang untuk membantu mengelola data produk, transaksi, dan pengguna dengan fitur CRUD (Create, Read, Update, Delete).
 
